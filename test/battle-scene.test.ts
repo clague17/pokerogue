@@ -1,5 +1,13 @@
-import { LoadingScene } from "#app/loading-scene";
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { LoadingScene } from "#app/scenes/loading-scene";
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import GameManager from "#test/testUtils/gameManager";
 
 describe("BattleScene", () => {

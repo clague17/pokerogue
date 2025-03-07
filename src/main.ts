@@ -7,7 +7,6 @@ import InputTextPlugin from "phaser3-rex-plugins/plugins/inputtext-plugin";
 import TransitionImagePackPlugin from "phaser3-rex-plugins/templates/transitionimagepack/transitionimagepack-plugin";
 import { initI18n } from "./plugins/i18n";
 
-
 // Catch global errors and display them in an alert so users can report the issue.
 window.onerror = function (message, source, lineno, colno, error) {
   console.error(error);
@@ -27,20 +26,29 @@ window.addEventListener("unhandledrejection", (event) => {
 /**
  * Sets this object's position relative to another object with a given offset
  */
-const setPositionRelative = function (guideObject: Phaser.GameObjects.GameObject, x: number, y: number) {
+const setPositionRelative = function (
+  guideObject: Phaser.GameObjects.GameObject,
+  x: number,
+  y: number
+) {
   const offsetX = guideObject.width * (-0.5 + (0.5 - guideObject.originX));
   const offsetY = guideObject.height * (-0.5 + (0.5 - guideObject.originY));
   this.setPosition(guideObject.x + offsetX + x, guideObject.y + offsetY + y);
 };
 
-Phaser.GameObjects.Container.prototype.setPositionRelative = setPositionRelative;
+Phaser.GameObjects.Container.prototype.setPositionRelative =
+  setPositionRelative;
 Phaser.GameObjects.Sprite.prototype.setPositionRelative = setPositionRelative;
 Phaser.GameObjects.Image.prototype.setPositionRelative = setPositionRelative;
-Phaser.GameObjects.NineSlice.prototype.setPositionRelative = setPositionRelative;
+Phaser.GameObjects.NineSlice.prototype.setPositionRelative =
+  setPositionRelative;
 Phaser.GameObjects.Text.prototype.setPositionRelative = setPositionRelative;
-Phaser.GameObjects.Rectangle.prototype.setPositionRelative = setPositionRelative;
+Phaser.GameObjects.Rectangle.prototype.setPositionRelative =
+  setPositionRelative;
 
-document.fonts.load("16px emerald").then(() => document.fonts.load("10px pkmnems"));
+document.fonts
+  .load("16px emerald")
+  .then(() => document.fonts.load("10px pkmnems"));
 
 let game;
 
@@ -48,50 +56,64 @@ const startGame = async (manifest?: any) => {
   await initI18n();
   const LoadingScene = (await import("./loading-scene")).LoadingScene;
   const BattleScene = (await import("./battle-scene")).default;
+  const OverworldScene = (await import("./overworld-scene")).default;
   game = new Phaser.Game({
     type: Phaser.WEBGL,
     parent: "app",
+    physics: {
+      default: "arcade",
+      arcade: {
+        gravity: { x: 0, y: 0 },
+        debug: false,
+      },
+    },
     scale: {
       width: 1920,
       height: 1080,
-      mode: Phaser.Scale.FIT
+      mode: Phaser.Scale.FIT,
     },
     plugins: {
-      global: [{
-        key: "rexInputTextPlugin",
-        plugin: InputTextPlugin,
-        start: true
-      }, {
-        key: "rexBBCodeTextPlugin",
-        plugin: BBCodeTextPlugin,
-        start: true
-      }, {
-        key: "rexTransitionImagePackPlugin",
-        plugin: TransitionImagePackPlugin,
-        start: true
-      }],
-      scene: [{
-        key: "rexUI",
-        plugin: UIPlugin,
-        mapping: "rexUI"
-      }]
+      global: [
+        {
+          key: "rexInputTextPlugin",
+          plugin: InputTextPlugin,
+          start: true,
+        },
+        {
+          key: "rexBBCodeTextPlugin",
+          plugin: BBCodeTextPlugin,
+          start: true,
+        },
+        {
+          key: "rexTransitionImagePackPlugin",
+          plugin: TransitionImagePackPlugin,
+          start: true,
+        },
+      ],
+      scene: [
+        {
+          key: "rexUI",
+          plugin: UIPlugin,
+          mapping: "rexUI",
+        },
+      ],
     },
     input: {
       mouse: {
-        target: "app"
+        target: "app",
       },
       touch: {
-        target: "app"
+        target: "app",
       },
-      gamepad: true
+      gamepad: true,
     },
     dom: {
-      createContainer: true
+      createContainer: true,
     },
     pixelArt: true,
     pipeline: [ InvertPostFX ] as unknown as Phaser.Types.Core.PipelineConfig,
-    scene: [ LoadingScene, BattleScene ],
-    version: version
+    scene: [ LoadingScene, BattleScene, OverworldScene ],
+    version: version,
   });
   game.sound.pauseOnBlur = false;
   if (manifest) {
@@ -100,10 +122,11 @@ const startGame = async (manifest?: any) => {
 };
 
 fetch("/manifest.json")
-  .then(res => res.json())
-  .then(jsonResponse => {
+  .then((res) => res.json())
+  .then((jsonResponse) => {
     startGame(jsonResponse.manifest);
-  }).catch(() => {
+  })
+  .catch(() => {
     // Manifest not found (likely local build)
     startGame();
   });
