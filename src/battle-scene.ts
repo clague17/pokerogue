@@ -174,8 +174,9 @@ import { BattlerTagType } from "#enums/battler-tag-type";
 import { FRIENDSHIP_GAIN_FROM_BATTLE } from "#app/data/balance/starters";
 import { StatusEffect } from "#enums/status-effect";
 import { initGlobalScene } from "#app/global-scene";
+import { LoginPhase } from "./phases/login-phase";
 
-export const bypassLogin = import.meta.env.VITE_BYPASS_LOGIN === "1";
+export const bypassLogin = true;
 
 const DEBUG_RNG = false;
 
@@ -819,7 +820,7 @@ export default class BattleScene extends SceneBase {
       ).then(() => loadMoveAnimAssets(defaultMoves, true)),
       this.initStarterColors(),
     ]).then(() => {
-      // this.pushPhase(new LoginPhase());
+      this.pushPhase(new LoginPhase());
       this.pushPhase(new TitlePhase());
 
       this.shiftPhase();

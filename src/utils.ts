@@ -1,7 +1,6 @@
 import { MoneyFormat } from "#enums/money-format";
 import { Moves } from "#enums/moves";
 import i18next from "i18next";
-import { pokerogueApi } from "#app/plugins/api/pokerogue-api";
 
 export type nil = null | undefined;
 
@@ -271,7 +270,7 @@ export const localServerUrl = import.meta.env.VITE_SERVER_URL ?? `http://${windo
  */
 export const apiUrl = localServerUrl ?? "https://api.pokerogue.net";
 // used to disable api calls when isLocal is true and a server is not found
-export let isLocalServerConnected = true;
+export const isLocalServerConnected = true;
 
 export const isBeta = import.meta.env.MODE === "beta"; // this checks to see if the env mode is development. Technically this gives the same value for beta AND for dev envs
 
@@ -310,18 +309,6 @@ export function getCookie(cName: string): string {
   return "";
 }
 
-/**
- * When locally running the game, "pings" the local server
- * with a GET request to verify if a server is running,
- * sets isLocalServerConnected based on results
- */
-export async function localPing() {
-  if (isLocal) {
-    const titleStats = await pokerogueApi.getGameTitleStats();
-    isLocalServerConnected = !!titleStats;
-    console.log("isLocalServerConnected:", isLocalServerConnected);
-  }
-}
 
 /** Alias for the constructor of a class */
 export type Constructor<T> = new(...args: unknown[]) => T;

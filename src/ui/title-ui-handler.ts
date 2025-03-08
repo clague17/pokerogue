@@ -20,8 +20,6 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
   private eventDisplay: TimedEventDisplay;
   private appVersionText: Phaser.GameObjects.Text;
 
-  private titleStatsTimer: NodeJS.Timeout | null;
-
   constructor(mode: Mode = Mode.TITLE) {
     super(mode);
   }
@@ -106,17 +104,6 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
 
       const ui = this.getUi();
 
-      if (globalScene.eventManager.isEventActive()) {
-        this.eventDisplay.setWidth(globalScene.scaledCanvas.width - this.optionSelectBg.width - this.optionSelectBg.x);
-        this.eventDisplay.show();
-      }
-
-      this.updateTitleStats();
-
-      this.titleStatsTimer = setInterval(() => {
-        this.updateTitleStats();
-      }, 60000);
-
       globalScene.tweens.add({
         targets: [ this.titleContainer, ui.getMessageHandler().bg ],
         duration: Utils.fixedInt(325),
@@ -134,9 +121,6 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
     const ui = this.getUi();
 
     this.eventDisplay?.clear();
-
-    this.titleStatsTimer && clearInterval(this.titleStatsTimer);
-    this.titleStatsTimer = null;
 
     globalScene.tweens.add({
       targets: [ this.titleContainer, ui.getMessageHandler().bg ],
