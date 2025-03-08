@@ -255,6 +255,8 @@ export class LoadingScene extends SceneBase {
       this.loadImage("pkmnday2025event-en", "events");
     }
 
+    this.loadImage("jen-header-en", "events");
+
     this.loadAtlas("statuses", "");
     this.loadAtlas("categories", "");
 

@@ -1,14 +1,12 @@
 import { globalScene } from "#app/global-scene";
-import { TextStyle, addTextObject } from "#app/ui/text";
 import type { nil } from "#app/utils";
 import { isNullOrUndefined } from "#app/utils";
 import i18next from "i18next";
 import { Species } from "#enums/species";
 import type { WeatherPoolEntry } from "#app/data/weather";
-import { WeatherType } from "#enums/weather-type";
 import { CLASSIC_CANDY_FRIENDSHIP_MULTIPLIER } from "./data/balance/starters";
-import { MysteryEncounterType } from "./enums/mystery-encounter-type";
-import { MysteryEncounterTier } from "./enums/mystery-encounter-tier";
+import type { MysteryEncounterType } from "./enums/mystery-encounter-type";
+import type { MysteryEncounterTier } from "./enums/mystery-encounter-tier";
 
 export enum EventType {
   SHINY,
@@ -55,159 +53,26 @@ interface TimedEvent extends EventBanner {
 
 const timedEvents: TimedEvent[] = [
   {
-    name: "Winter Holiday Update",
-    eventType: EventType.SHINY,
-    shinyMultiplier: 2,
-    upgradeUnlockedVouchers: true,
-    startDate: new Date(Date.UTC(2024, 11, 21, 0)),
-    endDate: new Date(Date.UTC(2025, 0, 4, 0)),
-    bannerKey: "winter_holidays2024-event-",
-    scale: 0.21,
-    availableLangs: [ "en", "de", "it", "fr", "ja", "ko", "es-ES", "pt-BR", "zh-CN" ],
-    eventEncounters: [
-      { species: Species.GIMMIGHOUL, blockEvolution: true },
-      { species: Species.DELIBIRD },
-      { species: Species.STANTLER },
-      { species: Species.CYNDAQUIL },
-      { species: Species.PIPLUP },
-      { species: Species.CHESPIN },
-      { species: Species.BALTOY },
-      { species: Species.SNOVER },
-      { species: Species.CHINGLING },
-      { species: Species.LITWICK },
-      { species: Species.CUBCHOO },
-      { species: Species.SWIRLIX },
-      { species: Species.AMAURA },
-      { species: Species.MUDBRAY },
-      { species: Species.ROLYCOLY },
-      { species: Species.MILCERY },
-      { species: Species.SMOLIV },
-      { species: Species.ALOLA_VULPIX },
-      { species: Species.GALAR_DARUMAKA },
-      { species: Species.IRON_BUNDLE }
-    ],
-    delibirdyBuff: [ "CATCHING_CHARM", "SHINY_CHARM", "ABILITY_CHARM", "EXP_CHARM", "SUPER_EXP_CHARM", "HEALING_CHARM" ],
-    weather: [{ weatherType: WeatherType.SNOW, weight: 1 }],
-    mysteryEncounterTierChanges: [
-      { mysteryEncounter: MysteryEncounterType.DELIBIRDY, tier: MysteryEncounterTier.COMMON },
-      { mysteryEncounter: MysteryEncounterType.PART_TIMER, disable: true },
-      { mysteryEncounter: MysteryEncounterType.AN_OFFER_YOU_CANT_REFUSE, disable: true },
-      { mysteryEncounter: MysteryEncounterType.FIELD_TRIP, disable: true },
-      { mysteryEncounter: MysteryEncounterType.DEPARTMENT_STORE_SALE, disable: true }
-    ]
-  },
-  {
-    name: "Year of the Snake",
+    name: "Jen Day 2025",
     eventType: EventType.LUCK,
-    luckBoost: 1,
-    startDate: new Date(Date.UTC(2025, 0, 29, 0)),
-    endDate: new Date(Date.UTC(2025, 1, 3, 0)),
-    bannerKey: "yearofthesnakeevent-",
-    scale: 0.21,
-    availableLangs: [ "en", "de", "it", "fr", "ja", "ko", "es-ES", "pt-BR", "zh-CN" ],
+    luckBoost: 3,
+    startDate: new Date(Date.UTC(2025, 1, 8)),
+    endDate: new Date(Date.UTC(2026, 3, 9)),
+    bannerKey: "jen-header-",
+    scale: 0.12,
+    availableLangs: [ "en", ],
     eventEncounters: [
-      { species: Species.EKANS },
-      { species: Species.ONIX },
-      { species: Species.DRATINI },
-      { species: Species.CLEFFA },
-      { species: Species.UMBREON },
-      { species: Species.DUNSPARCE },
-      { species: Species.TEDDIURSA },
-      { species: Species.SEVIPER },
-      { species: Species.LUNATONE },
-      { species: Species.CHINGLING },
-      { species: Species.SNIVY },
-      { species: Species.DARUMAKA },
-      { species: Species.DRAMPA },
-      { species: Species.SILICOBRA },
-      { species: Species.BLOODMOON_URSALUNA }
+      { species: Species.PIKACHU },
+      { species: Species.DRAGONITE },
     ],
     luckBoostedSpecies: [
-      Species.EKANS, Species.ARBOK,
-      Species.ONIX, Species.STEELIX,
+      Species.PIKACHU, Species.RAICHU, Species.ALOLA_RAICHU,
       Species.DRATINI, Species.DRAGONAIR, Species.DRAGONITE,
-      Species.CLEFFA, Species.CLEFAIRY, Species.CLEFABLE,
-      Species.UMBREON,
-      Species.DUNSPARCE, Species.DUDUNSPARCE,
-      Species.TEDDIURSA, Species.URSARING, Species.URSALUNA,
-      Species.SEVIPER,
-      Species.LUNATONE,
       Species.RAYQUAZA,
-      Species.CHINGLING, Species.CHIMECHO,
-      Species.CRESSELIA,
-      Species.DARKRAI,
-      Species.SNIVY, Species.SERVINE, Species.SERPERIOR,
-      Species.DARUMAKA, Species.DARMANITAN,
-      Species.ZYGARDE,
-      Species.DRAMPA,
-      Species.LUNALA,
-      Species.BLACEPHALON,
-      Species.SILICOBRA, Species.SANDACONDA,
-      Species.ROARING_MOON,
-      Species.BLOODMOON_URSALUNA
-    ]
+      Species.ARCHALUDON,
+      Species.PALKIA,
+      Species.BAGON, Species.SHELGON, Species.SALAMENCE, ]
   },
-  {
-    name: "Valentine",
-    eventType: EventType.SHINY,
-    startDate: new Date(Date.UTC(2025, 1, 10)),
-    endDate: new Date(Date.UTC(2025, 1, 21)),
-    boostFusions: true,
-    shinyMultiplier: 2,
-    bannerKey: "valentines2025event-",
-    scale: 0.21,
-    availableLangs: [ "en", "de", "it", "fr", "ja", "ko", "es-ES", "pt-BR", "zh-CN" ],
-    eventEncounters: [
-      { species: Species.NIDORAN_F },
-      { species: Species.NIDORAN_M },
-      { species: Species.IGGLYBUFF },
-      { species: Species.SMOOCHUM },
-      { species: Species.VOLBEAT },
-      { species: Species.ILLUMISE },
-      { species: Species.ROSELIA },
-      { species: Species.LUVDISC },
-      { species: Species.WOOBAT },
-      { species: Species.FRILLISH },
-      { species: Species.ALOMOMOLA },
-      { species: Species.FURFROU, formIndex: 1 }, // Heart Trim
-      { species: Species.ESPURR },
-      { species: Species.SPRITZEE },
-      { species: Species.SWIRLIX },
-      { species: Species.APPLIN },
-      { species: Species.MILCERY },
-      { species: Species.INDEEDEE },
-      { species: Species.TANDEMAUS },
-      { species: Species.ENAMORUS }
-    ],
-    luckBoostedSpecies: [ Species.LUVDISC ]
-  },
-  {
-    name: "PKMNDAY2025",
-    eventType: EventType.LUCK,
-    startDate: new Date(Date.UTC(2025, 1, 27)),
-    endDate: new Date(Date.UTC(2025, 2, 4)),
-    classicFriendshipMultiplier: 4,
-    bannerKey: "pkmnday2025event-",
-    scale: 0.21,
-    availableLangs: [ "en", "de", "it", "fr", "ja", "ko", "es-ES", "pt-BR", "zh-CN" ],
-    eventEncounters: [
-      { species: Species.PIKACHU, formIndex: 1, blockEvolution: true }, // Partner Form
-      { species: Species.EEVEE, formIndex: 1, blockEvolution: true }, // Partner Form
-      { species: Species.CHIKORITA },
-      { species: Species.TOTODILE },
-      { species: Species.TEPIG }
-    ],
-    luckBoostedSpecies: [
-      Species.PICHU, Species.PIKACHU, Species.RAICHU, Species.ALOLA_RAICHU,
-      Species.PSYDUCK, Species.GOLDUCK,
-      Species.EEVEE, Species.FLAREON, Species.JOLTEON, Species.VAPOREON, Species.ESPEON, Species.UMBREON, Species.LEAFEON, Species.GLACEON, Species.SYLVEON,
-      Species.CHIKORITA, Species.BAYLEEF, Species.MEGANIUM,
-      Species.TOTODILE, Species.CROCONAW, Species.FERALIGATR,
-      Species.TEPIG, Species.PIGNITE, Species.EMBOAR,
-      Species.ZYGARDE,
-      Species.ETERNAL_FLOETTE
-    ]
-  }
 ];
 
 export class TimedEventManager {
@@ -391,9 +256,7 @@ export class TimedEventDisplay extends Phaser.GameObjects.Container {
       if (this.banner) {
         this.banner.x = xPosition;
       }
-      if (this.eventTimerText) {
-        this.eventTimerText.x = xPosition;
-      }
+
     }
   }
 
@@ -408,38 +271,18 @@ export class TimedEventDisplay extends Phaser.GameObjects.Container {
           key += "en";
         }
       }
-      console.log(this.event.bannerKey);
       const padding = 5;
-      const showTimer = this.event.eventType !== EventType.NO_TIMER_DISPLAY;
-      const yPosition = globalScene.game.canvas.height / 6 - padding - (showTimer ? 10 : 0) - (this.event.yOffset ?? 0);
-      this.banner = new Phaser.GameObjects.Image(globalScene, this.availableWidth / 2, yPosition - padding, key);
+      const yPosition = globalScene.game.canvas.height / 6 - padding - (this.event.yOffset ?? 0);
+      this.banner = new Phaser.GameObjects.Image(globalScene, 0, yPosition - padding, key);
       this.banner.setName("img-event-banner");
-      this.banner.setOrigin(0.5, 1);
+      this.banner.setOrigin(0, 1);
       this.banner.setScale(this.event.scale ?? 0.18);
-      if (showTimer) {
-        this.eventTimerText = addTextObject(
-          this.banner.x,
-          this.banner.y + 2,
-          this.timeToGo(this.event.endDate),
-          TextStyle.WINDOW
-        );
-        this.eventTimerText.setName("text-event-timer");
-        this.eventTimerText.setScale(0.15);
-        this.eventTimerText.setOrigin(0.5, 0);
-
-        this.add(this.eventTimerText);
-      }
       this.add(this.banner);
     }
   }
 
   show() {
     this.setVisible(true);
-    this.updateCountdown();
-
-    this.eventTimer = setInterval(() => {
-      this.updateCountdown();
-    }, 1000);
   }
 
   clear() {

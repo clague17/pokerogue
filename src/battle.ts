@@ -29,21 +29,23 @@ import type { MysteryEncounterType } from "#enums/mystery-encounter-type";
 export enum ClassicFixedBossWaves {
   TOWN_YOUNGSTER = 5,
   LUIS = 8, // FRIEND
-  ELIOT = 10, // FRIEND
-  LUCAS = 12, // FRIEND
-  KATHY = 14, // FRIEND
-  SUSAN_AND_DYLAN = 16, // FRIEND
-  EVIL_GRUNT_3 = 18,
-  EVIL_ADMIN_1 = 20,
-  LUIS_2 = 22,
-  EVIL_GRUNT_4 = 24,
-  EVIL_ADMIN_2 = 26,
-  EVIL_BOSS_1 = 28,
-  ELITE_FOUR_1 = 30,
-  ELITE_FOUR_2 = 33,
-  ELITE_FOUR_3 = 36,
-  ELITE_FOUR_4 = 39,
-  CHAMPION = 42,
+  ELIOT = 18, // FRIEND
+  LUCAS = 28, // FRIEND
+  KATHY = 35, // FRIEND
+  SUSAN_AND_DYLAN = 45, // FRIEND
+  LUIS_2 = 57,
+  EVIL_BOSS_1 = 69,
+  ELITE_FOUR_1 = 81,
+  ELITE_FOUR_2 = 93,
+  ELITE_FOUR_3 = 105,
+  ELITE_FOUR_4 = 117,
+  CHAMPION = 129,
+  ELIOT_2 = 140,
+  LUCAS_2 = 151,
+  KATHY_2 = 162,
+  SUSAN_AND_DYLAN_2 = 173,
+  LUIS_3 = 184,
+  CHAMPION_2 = 195,
 }
 
 export enum BattleType {

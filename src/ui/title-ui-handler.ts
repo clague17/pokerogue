@@ -5,7 +5,6 @@ import { TextStyle, addTextObject } from "./text";
 import { getSplashMessages } from "../data/splash-messages";
 import i18next from "i18next";
 import { TimedEventDisplay } from "#app/timed-event-manager";
-import { version } from "../../package.json";
 import { pokerogueApi } from "#app/plugins/api/pokerogue-api";
 import { globalScene } from "#app/global-scene";
 
@@ -18,7 +17,6 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
   private splashMessage: string;
   private splashMessageText: Phaser.GameObjects.Text;
   private eventDisplay: TimedEventDisplay;
-  private appVersionText: Phaser.GameObjects.Text;
 
   constructor(mode: Mode = Mode.TITLE) {
     super(mode);
@@ -37,10 +35,13 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
     const logo = globalScene.add.image((globalScene.game.canvas.width / 6) / 2, 8, "logo");
     logo.setOrigin(0.5, 0);
     this.titleContainer.add(logo);
+    console.log("eventManager", globalScene.eventManager.isEventActive());
 
     if (globalScene.eventManager.isEventActive()) {
+      console.log("active event", globalScene.eventManager.activeEvent());
       this.eventDisplay = new TimedEventDisplay(0, 0, globalScene.eventManager.activeEvent());
       this.eventDisplay.setup();
+      console.log("eventDisplay", JSON.stringify(this.eventDisplay, null, 2));
       this.titleContainer.add(this.eventDisplay);
     }
 
@@ -68,11 +69,6 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
       loop: -1,
       yoyo: true,
     });
-
-    this.appVersionText = addTextObject(logo.x - 60, logo.y + logo.displayHeight + 4, "", TextStyle.MONEY, { fontSize: "54px" });
-    this.appVersionText.setOrigin(0.5, 0.5);
-    this.appVersionText.setAngle(0);
-    this.titleContainer.add(this.appVersionText);
   }
 
   updateTitleStats(): void {
@@ -98,9 +94,9 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
       this.playerCountLabel.setY((globalScene.game.canvas.height / 6) - 13 - this.getWindowHeight());
 
       this.splashMessage = Utils.randItem(getSplashMessages());
-      this.splashMessageText.setText(i18next.t(this.splashMessage, { count: TitleUiHandler.BATTLES_WON_FALLBACK }));
+      this.splashMessageText.setText("Happy Birthday Jen!");
 
-      this.appVersionText.setText("v" + version);
+      this.eventDisplay.show();
 
       const ui = this.getUi();
 
