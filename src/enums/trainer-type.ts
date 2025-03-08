@@ -264,4 +264,5 @@ export enum TrainerType {
     SUSAN_AND_DYLAN,
     KEVIN,
     ELIOT, // 505
+    ELIOT_2, // 506
 }

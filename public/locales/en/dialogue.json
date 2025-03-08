@@ -3135,6 +3135,14 @@
       "1": "better luck next time huehuehue. Keep going!"
     }
   },
+  "luis_2": {
+    "encounter": {
+      "1": "Im back! We're getting stronger!!!"
+    },
+    "victory": {
+      "1": "WOWOWOWOW\n$Keep going!"
+    }
+  },
   "eliot": {
     "encounter": {
       "1": "Howdydoo! Happy birthday dude!\n$ It's been great being your friend\n$ima try to win"

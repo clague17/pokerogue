@@ -41,7 +41,7 @@ export class TitlePhase extends Phase {
     globalScene.ui.clearText();
     globalScene.ui.fadeIn(250);
 
-    globalScene.playBgm("title", true);
+    globalScene.playBgm("victory_champion", true);
 
     globalScene.gameData.getSession(loggedInUser?.lastSessionSlot ?? -1).then(sessionData => {
       if (sessionData) {

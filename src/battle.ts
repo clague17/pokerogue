@@ -15,7 +15,6 @@ import type Pokemon from "#app/field/pokemon";
 import { ArenaTagType } from "#enums/arena-tag-type";
 import { BattleSpec } from "#enums/battle-spec";
 import type { Moves } from "#enums/moves";
-import { PlayerGender } from "#enums/player-gender";
 import { MusicPreference } from "#app/system/settings/settings";
 import { Species } from "#enums/species";
 import { TrainerType } from "#enums/trainer-type";
@@ -29,23 +28,23 @@ import type { MysteryEncounterType } from "#enums/mystery-encounter-type";
 export enum ClassicFixedBossWaves {
   TOWN_YOUNGSTER = 5,
   LUIS = 8, // FRIEND
-  ELIOT = 18, // FRIEND
-  LUCAS = 28, // FRIEND
+  ELIOT = 15, // FRIEND
+  LUCAS = 25, // FRIEND
   KATHY = 35, // FRIEND
   SUSAN_AND_DYLAN = 45, // FRIEND
   LUIS_2 = 57,
   EVIL_BOSS_1 = 69,
-  ELITE_FOUR_1 = 81,
-  ELITE_FOUR_2 = 93,
-  ELITE_FOUR_3 = 105,
-  ELITE_FOUR_4 = 117,
-  CHAMPION = 129,
-  ELIOT_2 = 140,
-  LUCAS_2 = 151,
-  KATHY_2 = 162,
-  SUSAN_AND_DYLAN_2 = 173,
-  LUIS_3 = 184,
-  CHAMPION_2 = 195,
+  ELITE_FOUR_1 = 80,
+  ELITE_FOUR_2 = 90,
+  ELITE_FOUR_3 = 100,
+  ELITE_FOUR_4 = 110,
+  CHAMPION = 120,
+  ELIOT_2 = 130,
+  LUCAS_2 = 140,
+  KATHY_2 = 150,
+  SUSAN_AND_DYLAN_2 = 160,
+  LUIS_3 = 170,
+  CHAMPION_2 = 180,
 }
 
 export enum BattleType {
@@ -723,26 +722,6 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.LUXURY,
-      ],
-      allowLuckUpgrades: false,
-    }),
-  [ClassicFixedBossWaves.RIVAL_4]: new FixedBattleConfig()
-    .setBattleType(BattleType.TRAINER)
-    .setGetTrainerFunc(
-      () =>
-        new Trainer(
-          TrainerType.RIVAL_4,
-          globalScene.gameData.gender === PlayerGender.MALE
-            ? TrainerVariant.FEMALE
-            : TrainerVariant.DEFAULT
-        )
-    )
-    .setCustomModifierRewards({
-      guaranteedModifierTiers: [
-        ModifierTier.ULTRA,
-        ModifierTier.ULTRA,
-        ModifierTier.ULTRA,
-        ModifierTier.ULTRA,
       ],
       allowLuckUpgrades: false,
     }),

@@ -2,19 +2,12 @@ import OptionSelectUiHandler from "./settings/option-select-ui-handler";
 import { Mode } from "./ui";
 import * as Utils from "../utils";
 import { TextStyle, addTextObject } from "./text";
-import { getSplashMessages } from "../data/splash-messages";
-import i18next from "i18next";
 import { TimedEventDisplay } from "#app/timed-event-manager";
-import { pokerogueApi } from "#app/plugins/api/pokerogue-api";
 import { globalScene } from "#app/global-scene";
 
 export default class TitleUiHandler extends OptionSelectUiHandler {
-  /** If the stats can not be retrieved, use this fallback value */
-  private static readonly BATTLES_WON_FALLBACK: number = -99999999;
 
   private titleContainer: Phaser.GameObjects.Container;
-  private playerCountLabel: Phaser.GameObjects.Text;
-  private splashMessage: string;
   private splashMessageText: Phaser.GameObjects.Text;
   private eventDisplay: TimedEventDisplay;
 
@@ -35,25 +28,12 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
     const logo = globalScene.add.image((globalScene.game.canvas.width / 6) / 2, 8, "logo");
     logo.setOrigin(0.5, 0);
     this.titleContainer.add(logo);
-    console.log("eventManager", globalScene.eventManager.isEventActive());
 
     if (globalScene.eventManager.isEventActive()) {
-      console.log("active event", globalScene.eventManager.activeEvent());
       this.eventDisplay = new TimedEventDisplay(0, 0, globalScene.eventManager.activeEvent());
       this.eventDisplay.setup();
-      console.log("eventDisplay", JSON.stringify(this.eventDisplay, null, 2));
       this.titleContainer.add(this.eventDisplay);
     }
-
-    this.playerCountLabel = addTextObject(
-      // Actual y position will be determined after the title menu has been populated with options
-      (globalScene.game.canvas.width / 6) - 2, 0,
-      `? ${i18next.t("menu:playersOnline")}`,
-      TextStyle.MESSAGE,
-      { fontSize: "54px" }
-    );
-    this.playerCountLabel.setOrigin(1, 0);
-    this.titleContainer.add(this.playerCountLabel);
 
     this.splashMessageText = addTextObject(logo.x + 64, logo.y + logo.displayHeight - 8, "", TextStyle.MONEY, { fontSize: "54px" });
     this.splashMessageText.setOrigin(0.5, 0.5);
@@ -71,29 +51,11 @@ export default class TitleUiHandler extends OptionSelectUiHandler {
     });
   }
 
-  updateTitleStats(): void {
-    pokerogueApi.getGameTitleStats()
-      .then(stats => {
-        if (stats) {
-          this.playerCountLabel.setText(`${stats.playerCount} ${i18next.t("menu:playersOnline")}`);
-          if (this.splashMessage === "splashMessages:battlesWon") {
-            this.splashMessageText.setText(i18next.t(this.splashMessage, { count: stats.battleCount }));
-          }
-        }
-      })
-      .catch(err => {
-        console.error("Failed to fetch title stats:\n", err);
-      });
-  }
 
   show(args: any[]): boolean {
     const ret = super.show(args);
 
     if (ret) {
-      // Moving player count to top of the menu
-      this.playerCountLabel.setY((globalScene.game.canvas.height / 6) - 13 - this.getWindowHeight());
-
-      this.splashMessage = Utils.randItem(getSplashMessages());
       this.splashMessageText.setText("Happy Birthday Jen!");
 
       this.eventDisplay.show();

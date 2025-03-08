@@ -175,8 +175,16 @@ export const trainerPartyTemplates = {
   RIVAL_6: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(3, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER)),
 
   LUIS: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
-  LUIS_2: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.STRONG, false, true)),
-  ELIOT: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
+  LUIS_2: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
+  ELIOT: new TrainerPartyCompoundTemplate(
+    new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
+    new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true)),
+  ELIOT_2: new TrainerPartyCompoundTemplate(
+    new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
+    new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
 };
 
 type PartyTemplateFunc = () => TrainerPartyTemplate;
@@ -360,9 +368,11 @@ export class TrainerConfig {
     let trainerType = trainerTypeToDeriveFrom ? trainerTypeToDeriveFrom : this.trainerType;
     switch (trainerType) {
       case TrainerType.LUIS:
+      case TrainerType.LUIS_2:
         trainerType = TrainerType.LUIS;
         break;
       case TrainerType.ELIOT:
+      case TrainerType.ELIOT_2:
         trainerType = TrainerType.ELIOT;
         break;
       case TrainerType.RIVAL_2:
@@ -1470,21 +1480,10 @@ const customTrainerConfigs = {
       p.generateName();
       p.gender = Gender.MALE;
     }))
-    .setPartyTemplates(new TrainerPartyTemplate(2, PartyMemberStrength.STRONG))
+    .setPartyTemplates(trainerPartyTemplates.LUIS)
     .setInstantTera(3), // Tera Ground or Rock Rhyperior / Electric Electivire / Fire Magmortar
-  //gengar metagross
-  [TrainerType.ELIOT]: new TrainerConfig(TrainerType.ELIOT)
-    .initForFriend(true)
-    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.METAGROSS ]))
-    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.GENGAR ]))
-    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SPIRITOMB ]))
-    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.LUCARIO ]))
-    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.MEWTWO ]))
-    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.TYRANITAR ]))
-    .setPartyTemplates(new TrainerPartyTemplate(3, PartyMemberStrength.STRONG))
-    .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
 
-  [TrainerType.LUIS_2]: new TrainerConfig(TrainerType.LUIS)
+  [TrainerType.LUIS_2]: new TrainerConfig(TrainerType.LUIS_2)
     .initForFriend(true)
     .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.BAGON ]))
     .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.RHYPERIOR, Species.ELECTIVIRE, Species.MAGMORTAR ]))
@@ -1503,8 +1502,33 @@ const customTrainerConfigs = {
       p.generateName();
       p.gender = Gender.MALE;
     }))
-    .setPartyTemplates(new TrainerPartyTemplate(4, PartyMemberStrength.STRONG))
+    .setPartyTemplates(trainerPartyTemplates.LUIS_2)
     .setInstantTera(3), // Tera Ground or Rock Rhyperior / Electric Electivire / Fire Magmortar
+
+
+  //gengar metagross
+  [TrainerType.ELIOT]: new TrainerConfig(TrainerType.ELIOT)
+    .initForFriend(true)
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.METAGROSS ]))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.GENGAR ]))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SPIRITOMB ]))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.LUCARIO ]))
+    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.MEWTWO ]))
+    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.TYRANITAR ]))
+    .setPartyTemplates(trainerPartyTemplates.ELIOT)
+    .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
+
+  [TrainerType.ELIOT_2]: new TrainerConfig(TrainerType.ELIOT_2)
+    .initForFriend(true)
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.METAGROSS ]))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.GENGAR ]))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SPIRITOMB ]))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.LUCARIO ]))
+    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.MEWTWO ]))
+    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.TYRANITAR ]))
+    .setPartyTemplates(trainerPartyTemplates.ELIOT)
+    .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
+
 
 };
 
