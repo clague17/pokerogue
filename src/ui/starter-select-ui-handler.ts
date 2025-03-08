@@ -2527,7 +2527,7 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
         valueLimit.value = 15;
         break;
       default:
-        valueLimit.value = 10;
+        valueLimit.value = 50;
     }
 
     Challenge.applyChallenges(globalScene.gameMode, Challenge.ChallengeType.STARTER_POINTS, valueLimit);
@@ -2923,6 +2923,10 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
   }
 
   setSpecies(species: PokemonSpecies | null) {
+    const dexEntries = [];
+    for (const spec of this.allSpecies) {
+      dexEntries.push(globalScene.gameData.dexData[spec.speciesId]);
+    }
     this.speciesStarterDexEntry = species ? globalScene.gameData.dexData[species.speciesId] : null;
     this.dexAttrCursor = species ? this.getCurrentDexProps(species.speciesId) : 0n;
     this.abilityCursor = species ? globalScene.gameData.getStarterSpeciesDefaultAbilityIndex(species) : 0;

@@ -90,7 +90,7 @@ export default class Trainer extends Phaser.GameObjects.Container {
       }
       ret.setOrigin(0.5, 1);
       const shadowOffset = 0;
-      if (this.config.trainerType === TrainerType.LUIS) {
+      if (this.config.trainerType === TrainerType.LUIS || this.config.trainerType === TrainerType.ELIOT) {
         hasShadow = false;
       }
 

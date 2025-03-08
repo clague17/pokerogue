@@ -3151,6 +3151,14 @@ export const trainerTypeDialogue: TrainerTypeDialogue = {
     defeat: [
       "dialogue:luis.defeat.1",
     ]
+  },
+  [TrainerType.ELIOT]: {
+    encounter: [
+      "dialogue:eliot.encounter.1",
+    ],
+    victory: [
+      "dialogue:eliot.victory.1",
+    ],
   }
 };
 

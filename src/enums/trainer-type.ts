@@ -258,9 +258,10 @@ export enum TrainerType {
   RIVAL_6,
     // CUSTOM TRAINERS
     LUIS = 500,
-    KATHY = 501,
-    LUCAS = 502,
-    SUSAN_AND_DYLAN = 503,
-    KEVIN = 504,
-    ELIOT = 505,
+    LUIS_2,
+    KATHY,
+    LUCAS,
+    SUSAN_AND_DYLAN,
+    KEVIN,
+    ELIOT, // 505
 }

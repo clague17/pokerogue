@@ -111,6 +111,7 @@ export class EncounterPhase extends BattlePhase {
               pokemon.customPokemonData.resetHitReceivedCount();
             }
           }
+          console.log(`[DEBUG] ENEMY PARTY: ${JSON.stringify(battle.enemyParty)}`);
           battle.enemyParty[e] = battle.trainer?.genPartyMember(e)!; // TODO:: is the bang correct here?
         } else {
           let enemySpecies = globalScene.randomSpecies(battle.waveIndex, level, true);

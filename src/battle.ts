@@ -29,13 +29,13 @@ import type { MysteryEncounterType } from "#enums/mystery-encounter-type";
 export enum ClassicFixedBossWaves {
   TOWN_YOUNGSTER = 5,
   LUIS = 8, // FRIEND
-  ELIOT_AND_KEVIN = 10, // FRIEND
+  ELIOT = 10, // FRIEND
   LUCAS = 12, // FRIEND
   KATHY = 14, // FRIEND
   SUSAN_AND_DYLAN = 16, // FRIEND
   EVIL_GRUNT_3 = 18,
   EVIL_ADMIN_1 = 20,
-  RIVAL_4 = 22,
+  LUIS_2 = 22,
   EVIL_GRUNT_4 = 24,
   EVIL_ADMIN_2 = 26,
   EVIL_BOSS_1 = 28,
@@ -691,7 +691,36 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
+        ModifierTier.LUXURY,
+      ],
+      allowLuckUpgrades: false,
+    }),
+  [ClassicFixedBossWaves.ELIOT]: new FixedBattleConfig()
+    .setBattleType(BattleType.TRAINER)
+    .setGetTrainerFunc(
+      () => new Trainer(TrainerType.ELIOT, TrainerVariant.DEFAULT, undefined, undefined, undefined, trainerConfigs[TrainerType.ELIOT])
+    ).setCustomModifierRewards({
+      guaranteedModifierTiers: [
         ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.LUXURY,
+      ],
+      allowLuckUpgrades: false,
+    }),
+  [ClassicFixedBossWaves.LUIS_2]: new FixedBattleConfig()
+    .setBattleType(BattleType.TRAINER)
+    .setGetTrainerFunc(
+      () => {
+        const trainer = new Trainer(TrainerType.LUIS_2, TrainerVariant.DEFAULT, undefined, undefined, undefined, trainerConfigs[TrainerType.LUIS_2]);
+        return trainer;
+      }
+    ).setCustomModifierRewards({
+      guaranteedModifierTiers: [
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.LUXURY,
       ],
       allowLuckUpgrades: false,
     }),

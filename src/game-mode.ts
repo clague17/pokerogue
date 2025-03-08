@@ -165,13 +165,14 @@ export class GameMode implements GameModeConfig {
     if (classicFixedBattles.hasOwnProperty(waveIndex.toString())) {
       const fixedBattleConfig = classicFixedBattles[waveIndex];
       const isTrainer = fixedBattleConfig.battleType === BattleType.TRAINER;
-      console.log(`[DEBUG] Wave ${waveIndex} has fixed battle config, isTrainer: ${isTrainer}`);
       return isTrainer;
     }
 
     // Check for specific waves
     if (waveIndex === ClassicFixedBossWaves.LUIS) {
-      console.log(`[DEBUG] Wave ${waveIndex} is Luis's wave, should be a trainer battle`);
+      return true;
+    }
+    if (waveIndex === ClassicFixedBossWaves.ELIOT) {
       return true;
     }
 
