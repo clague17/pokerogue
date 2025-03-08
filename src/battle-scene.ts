@@ -138,7 +138,6 @@ import { TrainerType } from "#enums/trainer-type";
 import { battleSpecDialogue } from "#app/data/dialogue";
 import { LoadingScene } from "#app/loading-scene";
 import { LevelCapPhase } from "#app/phases/level-cap-phase";
-import { LoginPhase } from "#app/phases/login-phase";
 import { MessagePhase } from "#app/phases/message-phase";
 import { MovePhase } from "#app/phases/move-phase";
 import { NewBiomeEncounterPhase } from "#app/phases/new-biome-encounter-phase";
@@ -820,7 +819,7 @@ export default class BattleScene extends SceneBase {
       ).then(() => loadMoveAnimAssets(defaultMoves, true)),
       this.initStarterColors(),
     ]).then(() => {
-      this.pushPhase(new LoginPhase());
+      // this.pushPhase(new LoginPhase());
       this.pushPhase(new TitlePhase());
 
       this.shiftPhase();
