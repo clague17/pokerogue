@@ -19,6 +19,7 @@ window.onerror = function (message, source, lineno, colno, error) {
 
 // Catch global promise rejections and display them in an alert so users can report the issue.
 window.addEventListener("unhandledrejection", (event) => {
+  console.log("event: ", event);
   // const errorString = `Received unhandled promise rejection. Open browser console and click OK to see details.\nReason: ${event.reason}`;
   console.error(event.reason);
   //alert(errorString);

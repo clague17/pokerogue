@@ -49,7 +49,7 @@ export class VictoryPhase extends PokemonPhase {
       }
       if (globalScene.gameMode.isEndless || !globalScene.gameMode.isWaveFinal(globalScene.currentBattle.waveIndex)) {
         globalScene.pushPhase(new EggLapsePhase());
-        if (globalScene.gameMode.isClassic && globalScene.currentBattle.waveIndex === ClassicFixedBossWaves.EVIL_BOSS_2) {
+        if (globalScene.gameMode.isClassic && globalScene.currentBattle.waveIndex === ClassicFixedBossWaves.EVIL_BOSS_1) {
           // Should get Lock Capsule on 165 before shop phase so it can be used in the rewards shop
           globalScene.pushPhase(new ModifierRewardPhase(modifierTypes.LOCK_CAPSULE));
         }

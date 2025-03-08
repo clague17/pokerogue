@@ -85,8 +85,20 @@ export default class Trainer extends Phaser.GameObjects.Container {
 
     const getSprite = (hasShadow?: boolean, forceFemale?: boolean) => {
       const ret = globalScene.addFieldSprite(0, 0, this.config.getSpriteKey(variant === TrainerVariant.FEMALE || forceFemale, this.isDouble()));
+      if (this.config.trainerType === TrainerType.LUIS) {
+        ret.setScale(0.7);
+      }
       ret.setOrigin(0.5, 1);
-      ret.setPipeline(globalScene.spritePipeline, { tone: [ 0.0, 0.0, 0.0, 0.0 ], hasShadow: !!hasShadow });
+      const shadowOffset = 0;
+      if (this.config.trainerType === TrainerType.LUIS) {
+        hasShadow = false;
+      }
+
+      ret.setPipeline(globalScene.spritePipeline, {
+        tone: [ 0.0, 0.0, 0.0, 0.0 ],
+        hasShadow: !!hasShadow,
+        yShadowOffset: shadowOffset
+      });
       return ret;
     };
 

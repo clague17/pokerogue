@@ -274,6 +274,7 @@ export class TrainerConfig {
     this.trainerType = trainerType;
     this.trainerAI = new TrainerAI();
     this.name = Utils.toReadableString(TrainerType[this.getDerivedType()]);
+    console.log(`[DEBUG] TrainerConfig constructor: ${this.name}`);
     this.battleBgm = "battle_trainer";
     this.mixedBattleBgm = "battle_trainer";
     this.victoryBgm = "victory_trainer";
@@ -282,10 +283,16 @@ export class TrainerConfig {
   }
 
   getKey(): string {
-    return TrainerType[this.getDerivedType()].toString().toLowerCase();
+    const key = TrainerType[this.getDerivedType()].toString().toLowerCase();
+    console.log(`[DEBUG] getKey: ${key}`);
+    return key;
   }
 
   getSpriteKey(female?: boolean, isDouble: boolean = false): string {
+    if (this.trainerType === TrainerType.LUIS) {
+      console.log(`[DEBUG] getSpriteKey: ${this.getKey()}`);
+      return "luis";
+    }
     let ret = this.getKey();
     if (this.hasGenders) {
       ret += `_${female ? "f" : "m"}`;
@@ -295,6 +302,7 @@ export class TrainerConfig {
       // Get the derived type for the double trainer since the sprite key is based on the derived type
       ret = TrainerType[this.getDerivedType(this.trainerTypeDouble)].toString().toLowerCase();
     }
+    console.log(`[DEBUG] getSpriteKey: ${ret}`);
     return ret;
   }
 
@@ -349,6 +357,9 @@ export class TrainerConfig {
   getDerivedType(trainerTypeToDeriveFrom: TrainerType | null = null): TrainerType {
     let trainerType = trainerTypeToDeriveFrom ? trainerTypeToDeriveFrom : this.trainerType;
     switch (trainerType) {
+      case TrainerType.LUIS:
+        trainerType = TrainerType.LUIS;
+        break;
       case TrainerType.RIVAL_2:
       case TrainerType.RIVAL_3:
       case TrainerType.RIVAL_4:
@@ -941,6 +952,29 @@ export class TrainerConfig {
     return this;
   }
 
+  initForFriend( isMale: boolean, specialtyType?: Type, teraSlot?: number): TrainerConfig {
+    if (!getIsInitialized()) {
+      initI18n();
+    }
+    // Localize the trainer's name by converting it to lowercase and replacing spaces with underscores.
+    const nameForCall = this.name.toLowerCase().replace(/\s/g, "_");
+    this.name = nameForCall;
+
+    // Set the title to "elite_four". (this is the key in the i18n file)
+    this.name === "luis" ? this.setTitle("boyfriend") : this.setTitle("friend");
+
+    // Configure various properties for the Elite Four member.
+    this.setMoneyMultiplier(50);
+    this.setBoss();
+    this.setStaticParty();
+    this.setHasVoucher(true);
+    this.setBattleBgm("battle_unova_elite");
+    this.setVictoryBgm("victory_gym");
+    this.setRandomTeraModifiers(() => 1, teraSlot);
+
+    return this;
+  }
+
   /**
      * Initializes the trainer configuration for an Elite Four member.
      * @param {Species | Species[]} signatureSpecies The signature species for the Elite Four member.
@@ -1411,7 +1445,33 @@ export const signatureSpecies: SignatureSpecies = {
   DRAYTON: [ Species.ARCHALUDON, Species.DRAGONITE, Species.HAXORUS, Species.SCEPTILE ], // Tera Dragon Archaludon
 };
 
+const customTrainerConfigs = {
+  [TrainerType.LUIS]: new TrainerConfig(TrainerType.LUIS)
+    .setBattleBgm("battle_kanto_champion")
+    .initForFriend(true)
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.ARCEUS ]))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.PIPLUP ]))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.GENGAR ], TrainerSlot.TRAINER, true, p => {
+      p.generateAndPopulateMoveset();
+      p.pokeball = PokeballType.MASTER_BALL;
+    }))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.RHYPERIOR, Species.ELECTIVIRE, Species.MAGMORTAR ]))
+    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.ARCANINE, Species.GYARADOS ], TrainerSlot.TRAINER, true, p => {
+      p.formIndex = 1; // Mega Arcanine / Mega Gyarados
+      p.generateAndPopulateMoveset();
+    }))
+    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.PIDGEOT ], TrainerSlot.TRAINER, true, p => {
+      p.formIndex = 1; // Mega Pidgeot
+      p.generateAndPopulateMoveset();
+      p.generateName();
+      p.gender = Gender.MALE;
+    }))
+    .setInstantTera(3), // Tera Ground or Rock Rhyperior / Electric Electivire / Fire Magmortar
+};
+
+
 export const trainerConfigs: TrainerConfigs = {
+  ...customTrainerConfigs,
   [TrainerType.UNKNOWN]: new TrainerConfig(0).setHasGenders(),
   [TrainerType.ACE_TRAINER]: new TrainerConfig(++t).setHasGenders("Ace Trainer Female").setHasDouble("Ace Duo").setMoneyMultiplier(2.25).setEncounterBgm(TrainerType.ACE_TRAINER)
     .setPartyTemplateFunc(() => getWavePartyTemplate(trainerPartyTemplates.THREE_WEAK_BALANCED, trainerPartyTemplates.FOUR_WEAK_BALANCED, trainerPartyTemplates.FIVE_WEAK_BALANCED, trainerPartyTemplates.SIX_WEAK_BALANCED)),
@@ -2943,6 +3003,6 @@ export const trainerConfigs: TrainerConfigs = {
     .setMixedBattleBgm("mystery_encounter_weird_dream")
     .setVictoryBgm("mystery_encounter_weird_dream")
     .setLocalizedName("Future Self F")
-    .setPartyTemplates(new TrainerPartyTemplate(6, PartyMemberStrength.STRONG))
+    .setPartyTemplates(new TrainerPartyTemplate(6, PartyMemberStrength.STRONG)),
 };
 

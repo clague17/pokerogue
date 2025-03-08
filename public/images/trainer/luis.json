@@ -1,0 +1,41 @@
+{
+	"textures": [
+		{
+			"image": "luis.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 77,
+				"h": 122
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 72,
+						"h": 122
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 72,
+						"h": 122
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 72,
+						"h": 122
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:b8c755f644c1da3cfed964f61c9154eb:40d17978229fda3804bd3bf969432d18:79676d73e5377eadb7b85e1fcd48cc9a$"
+	}
+}

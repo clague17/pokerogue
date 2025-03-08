@@ -3139,7 +3139,19 @@ export const trainerTypeDialogue: TrainerTypeDialogue = {
         "dialogue:rival_6_female.victory.1",
       ],
     }
-  ]
+  ],
+  [TrainerType.LUIS]: {
+    encounter: [
+      "dialogue:luis.encounter.1",
+      "dialogue:luis.encounter.2"
+    ],
+    victory: [
+      "dialogue:luis.victory.1",
+    ],
+    defeat: [
+      "dialogue:luis.defeat.1",
+    ]
+  }
 };
 
 
@@ -3184,7 +3196,6 @@ export const doubleBattleDialogue = {
     encounter: [ "doubleBattleDialogue:piers_marnie_double.encounter.1" ],
     victory: [ "doubleBattleDialogue:piers_marnie_double.victory.1" ]
   },
-
 
 };
 
