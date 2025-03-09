@@ -311,7 +311,7 @@ export class TrainerConfig {
   }
 
   getSpriteKey(female?: boolean, isDouble: boolean = false): string {
-    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT, TrainerType.LUCAS, TrainerType.KATHY, TrainerType.SUSAN, TrainerType.DYLAN ];
+    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT, TrainerType.LUCAS, TrainerType.KATHY, TrainerType.SUSAN_AND_DYLAN, ];
     if (customTrainers.includes(this.trainerType)) {
       return this.getKey();
     }
