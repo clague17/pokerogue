@@ -175,7 +175,7 @@ export const trainerPartyTemplates = {
   RIVAL_5: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(3, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.STRONG)),
   RIVAL_6: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(3, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER)),
 
-  LUIS: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
+  LUIS: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.WEAK), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
   LUIS_2: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
   ELIOT: new TrainerPartyCompoundTemplate(
     new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
@@ -1485,35 +1485,31 @@ export const signatureSpecies: SignatureSpecies = {
 const customTrainerConfigs = {
   [TrainerType.LUIS]: new TrainerConfig(TrainerType.LUIS)
     .initForFriend(true)
-    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.BAGON ]))
-    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.PIPLUP ]))
-    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.GENGAR ], TrainerSlot.TRAINER, true, p => {
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.EMPOLEON ]))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.GENGAR ], TrainerSlot.TRAINER, true, p => {
       p.generateAndPopulateMoveset();
       p.pokeball = PokeballType.MASTER_BALL;
     }))
-    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.RHYPERIOR, Species.ELECTIVIRE, Species.MAGMORTAR ]))
-    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.ARCANINE, Species.GYARADOS ], TrainerSlot.TRAINER, true, p => {
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.GROUDON ]))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.HISUI_ARCANINE, Species.GYARADOS ], TrainerSlot.TRAINER, true, p => {
       p.formIndex = 1; // Mega Arcanine / Mega Gyarados
       p.generateAndPopulateMoveset();
     }))
-    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.PIDGEOT ], TrainerSlot.TRAINER, true, p => {
-      p.formIndex = 1; // Mega Pidgeot
+    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.MEWTWO ], TrainerSlot.TRAINER, true, p => {
+      p.formIndex = 1; // Mega Mewtwo
       p.generateAndPopulateMoveset();
       p.generateName();
       p.gender = Gender.MALE;
     }))
     .setPartyTemplates(trainerPartyTemplates.LUIS)
-    .setBattleBgm("battle_legendary_dia_pal")
-    .setInstantTera(3), // Tera Ground or Rock Rhyperior / Electric Electivire / Fire Magmortar
+    .setBattleBgm("battle_legendary_dia_pal"),
+  // .setInstantTera(3), // Tera Ground or Rock Rhyperior / Electric Electivire / Fire Magmortar
 
   [TrainerType.LUIS_2]: new TrainerConfig(TrainerType.LUIS_2)
     .initForFriend(true)
     .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.SALAMENCE ]))
     .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.RHYPERIOR, Species.ELECTIVIRE, Species.MAGMORTAR ]))
-    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.GENGAR ], TrainerSlot.TRAINER, true, p => {
-      p.generateAndPopulateMoveset();
-      p.pokeball = PokeballType.MASTER_BALL;
-    }))
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.EMPOLEON ]))
     .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.GROUDON ]))
     .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.HISUI_ARCANINE, Species.GYARADOS ], TrainerSlot.TRAINER, true, p => {
       p.formIndex = 1; // Mega Arcanine / Mega Gyarados
@@ -1525,8 +1521,7 @@ const customTrainerConfigs = {
       p.generateName();
       p.gender = Gender.MALE;
     }))
-    .setPartyTemplates(trainerPartyTemplates.LUIS_2)
-    .setInstantTera(3), // Tera Ground or Rock Rhyperior / Electric Electivire / Fire Magmortar
+    .setPartyTemplates(trainerPartyTemplates.LUIS_2),
 
 
   //gengar metagross

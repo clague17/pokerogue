@@ -692,9 +692,9 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
-        ModifierTier.LUXURY,
+        ModifierTier.MASTER,
       ],
-      allowLuckUpgrades: false,
+      allowLuckUpgrades: true,
     }),
 
   [ClassicFixedBossWaves.LUIS_2]: new FixedBattleConfig()
@@ -709,9 +709,9 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
-        ModifierTier.LUXURY,
+        ModifierTier.MASTER,
       ],
-      allowLuckUpgrades: false,
+      allowLuckUpgrades: true,
     }),
   [ClassicFixedBossWaves.ELIOT]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)
@@ -722,9 +722,9 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
-        ModifierTier.LUXURY,
+        ModifierTier.MASTER,
       ],
-      allowLuckUpgrades: false,
+      allowLuckUpgrades: true,
     }),
   [ClassicFixedBossWaves.ELIOT_2]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)
@@ -735,7 +735,7 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
-        ModifierTier.LUXURY,
+        ModifierTier.MASTER,
       ],
       allowLuckUpgrades: true,
     }),
@@ -748,9 +748,9 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
-        ModifierTier.LUXURY,
+        ModifierTier.MASTER,
       ],
-      allowLuckUpgrades: false,
+      allowLuckUpgrades: true,
     }),
   [ClassicFixedBossWaves.KATHY]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)
@@ -761,7 +761,7 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
-        ModifierTier.LUXURY,
+        ModifierTier.MASTER,
       ],
       allowLuckUpgrades: true,
     }),
@@ -775,7 +775,7 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
         ModifierTier.ULTRA,
-        ModifierTier.LUXURY,
+        ModifierTier.MASTER,
       ],
       allowLuckUpgrades: true,
     }),
