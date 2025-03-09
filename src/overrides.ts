@@ -61,7 +61,7 @@ class DefaultOverrides {
    * If `"odd-doubles"`, follow the `"double"` rule on odd wave numbers, and follow the `"single"` rule on even wave numbers.
    */
   readonly BATTLE_TYPE_OVERRIDE: BattleStyle | null = null;
-  readonly STARTING_WAVE_OVERRIDE: number = 8;
+  readonly STARTING_WAVE_OVERRIDE: number = 25;
   readonly STARTING_BIOME_OVERRIDE: Biome = Biome.TOWN;
   readonly ARENA_TINT_OVERRIDE: TimeOfDay | null = null;
   /** Multiplies XP gained by this value including 0. Set to null to ignore the override. */

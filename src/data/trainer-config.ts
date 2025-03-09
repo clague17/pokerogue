@@ -185,6 +185,11 @@ export const trainerPartyTemplates = {
     new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
     new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true),
     new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
+  LUCAS: new TrainerPartyCompoundTemplate(
+    new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
+    new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
 };
 
 type PartyTemplateFunc = () => TrainerPartyTemplate;
@@ -299,7 +304,7 @@ export class TrainerConfig {
   }
 
   getSpriteKey(female?: boolean, isDouble: boolean = false): string {
-    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT ];
+    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT, TrainerType.LUCAS ];
     if (customTrainers.includes(this.trainerType)) {
       return this.getKey();
     }
@@ -1529,6 +1534,14 @@ const customTrainerConfigs = {
     .setPartyTemplates(trainerPartyTemplates.ELIOT)
     .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
 
+  [TrainerType.LUCAS]: new TrainerConfig(TrainerType.LUCAS)
+    .initForFriend(true)
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.CHARIZARD ]))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.HORSEA ]))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.LUGIA ]))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.DIALGA ]))
+    .setPartyTemplates(trainerPartyTemplates.LUCAS)
+    .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
 
 };
 

@@ -3150,6 +3150,13 @@
     "victory": {
       "1": "oop, that's a toughie...\n$I'm excited to see what 25 has in store for you!"
     }
+  },
+  "lucas": {
+    "encounter": {
+      "1": "Happy birthday Jen!!!\n$I'm excited to see what 25 has in store for you!"
+    },
+    "victory": {
+      "1": "Can't wait to see what you'll do next :)\n$Hope 25 is awesome!!"
+    }
   }
-
 }

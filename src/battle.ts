@@ -696,6 +696,23 @@ export const classicFixedBattles: FixedBattleConfigs = {
       ],
       allowLuckUpgrades: false,
     }),
+
+  [ClassicFixedBossWaves.LUIS_2]: new FixedBattleConfig()
+    .setBattleType(BattleType.TRAINER)
+    .setGetTrainerFunc(
+      () => {
+        const trainer = new Trainer(TrainerType.LUIS_2, TrainerVariant.DEFAULT, undefined, undefined, undefined, trainerConfigs[TrainerType.LUIS_2]);
+        return trainer;
+      }
+    ).setCustomModifierRewards({
+      guaranteedModifierTiers: [
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.LUXURY,
+      ],
+      allowLuckUpgrades: false,
+    }),
   [ClassicFixedBossWaves.ELIOT]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)
     .setGetTrainerFunc(
@@ -709,13 +726,23 @@ export const classicFixedBattles: FixedBattleConfigs = {
       ],
       allowLuckUpgrades: false,
     }),
-  [ClassicFixedBossWaves.LUIS_2]: new FixedBattleConfig()
+  [ClassicFixedBossWaves.ELIOT_2]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)
     .setGetTrainerFunc(
-      () => {
-        const trainer = new Trainer(TrainerType.LUIS_2, TrainerVariant.DEFAULT, undefined, undefined, undefined, trainerConfigs[TrainerType.LUIS_2]);
-        return trainer;
-      }
+      () => new Trainer(TrainerType.ELIOT_2, TrainerVariant.DEFAULT, undefined, undefined, undefined, trainerConfigs[TrainerType.ELIOT_2])
+    ).setCustomModifierRewards({
+      guaranteedModifierTiers: [
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.LUXURY,
+      ],
+      allowLuckUpgrades: false,
+    }),
+  [ClassicFixedBossWaves.LUCAS]: new FixedBattleConfig()
+    .setBattleType(BattleType.TRAINER)
+    .setGetTrainerFunc(
+      () => new Trainer(TrainerType.LUCAS, TrainerVariant.DEFAULT, undefined, undefined, undefined, trainerConfigs[TrainerType.LUCAS])
     ).setCustomModifierRewards({
       guaranteedModifierTiers: [
         ModifierTier.ULTRA,

@@ -1,0 +1,41 @@
+{
+	"textures": [
+		{
+			"image": "lucas.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 45,
+				"h": 106
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 45,
+						"h": 106
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 45,
+						"h": 106
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 45,
+						"h": 106
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:79dc50890fed71cfcf80b2e21b5957a4:89d01c417c7ce27db28a04a31679cb38:f1d3c037aa88a0c5f4aef5a9ad5f6466$"
+	}
+}

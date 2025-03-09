@@ -175,6 +175,9 @@ export class GameMode implements GameModeConfig {
     if (waveIndex === ClassicFixedBossWaves.ELIOT) {
       return true;
     }
+    if (waveIndex === ClassicFixedBossWaves.LUCAS) {
+      return true;
+    }
 
     /**
      * Daily spawns trainers on floors 5, 15, 20, 25, 30, 35, 40, and 45
