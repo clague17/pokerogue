@@ -737,7 +737,7 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.ULTRA,
         ModifierTier.LUXURY,
       ],
-      allowLuckUpgrades: false,
+      allowLuckUpgrades: true,
     }),
   [ClassicFixedBossWaves.LUCAS]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)
@@ -751,6 +751,19 @@ export const classicFixedBattles: FixedBattleConfigs = {
         ModifierTier.LUXURY,
       ],
       allowLuckUpgrades: false,
+    }),
+  [ClassicFixedBossWaves.KATHY]: new FixedBattleConfig()
+    .setBattleType(BattleType.TRAINER)
+    .setGetTrainerFunc(
+      () => new Trainer(TrainerType.KATHY, TrainerVariant.DEFAULT, undefined, undefined, undefined, trainerConfigs[TrainerType.KATHY])
+    ).setCustomModifierRewards({
+      guaranteedModifierTiers: [
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.LUXURY,
+      ],
+      allowLuckUpgrades: true,
     }),
   [ClassicFixedBossWaves.ELITE_FOUR_1]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)

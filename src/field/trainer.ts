@@ -90,7 +90,7 @@ export default class Trainer extends Phaser.GameObjects.Container {
       }
       ret.setOrigin(0.5, 1);
       const shadowOffset = 0;
-      const friends = [ "luis", "eliot", "lucas" ];
+      const friends = [ "luis", "eliot", "lucas", "kathy" ];
       if (friends.includes(this.config.getKey())) {
         hasShadow = false;
       }

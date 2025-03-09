@@ -1,0 +1,41 @@
+{
+	"textures": [
+		{
+			"image": "kathy.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 53,
+				"h": 75
+			},
+			"scale":1,
+			"frames": [
+				{
+					"filename": "0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 53,
+						"h": 75
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 75
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 75
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:79133ade68e29f7c8ef96df4ef4825f7:7e9d4926e13d0ed4aa3d3283e307c56e:e4ecad97769e2383e54c24ac8e0a73a8$"
+	}
+}

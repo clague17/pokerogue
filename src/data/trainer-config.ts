@@ -304,7 +304,7 @@ export class TrainerConfig {
   }
 
   getSpriteKey(female?: boolean, isDouble: boolean = false): string {
-    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT, TrainerType.LUCAS ];
+    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT, TrainerType.LUCAS, TrainerType.KATHY ];
     if (customTrainers.includes(this.trainerType)) {
       return this.getKey();
     }
@@ -1551,6 +1551,13 @@ const customTrainerConfigs = {
     .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.MACHAMP ]))
     .setPartyTemplates(trainerPartyTemplates.LUCAS)
     .setInstantTera(2), // Tera Fire Infernape / Tera Dragon Gyarados / Tera Flying Staraptor / Tera Fighting Machamp
+  [TrainerType.KATHY]: new TrainerConfig(TrainerType.KATHY)
+    .initForFriend(true)
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.SQUIRTLE ], TrainerSlot.TRAINER, true,))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.SNORLAX ]))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SOBBLE ]))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.SINISTCHA ]))
+    .setPartyTemplates(trainerPartyTemplates.LUCAS)
 
 };
 

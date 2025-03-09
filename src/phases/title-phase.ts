@@ -86,13 +86,6 @@ export class TitlePhase extends Phase {
             return true;
           }
         });
-        options.push({
-          label: i18next.t("menu:dailyRun"),
-          handler: () => {
-            this.initDailyRun();
-            return true;
-          }
-        });
         if (gameData.isUnlocked(Unlockables.ENDLESS_MODE)) {
           options.push({
             label: GameMode.getModeName(GameModes.CHALLENGE),

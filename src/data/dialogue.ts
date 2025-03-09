@@ -3175,6 +3175,14 @@ export const trainerTypeDialogue: TrainerTypeDialogue = {
       "dialogue:lucas.victory.1",
     ],
   },
+  [TrainerType.KATHY]: {
+    encounter: [
+      "dialogue:kathy.encounter.1",
+    ],
+    victory: [
+      "dialogue:kathy.victory.1",
+    ],
+  },
 };
 
 
