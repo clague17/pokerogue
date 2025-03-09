@@ -178,7 +178,7 @@ export const trainerPartyTemplates = {
   LUIS: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.WEAK), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE)),
   LUIS_2: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
   ELIOT: new TrainerPartyCompoundTemplate(
-    new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
+    new TrainerPartyTemplate(1, PartyMemberStrength.WEAK),
     new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
     new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true)),
   ELIOT_2: new TrainerPartyCompoundTemplate(
