@@ -187,9 +187,9 @@ export const trainerPartyTemplates = {
     new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
   LUCAS: new TrainerPartyCompoundTemplate(
     new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
-    new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true),
     new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
-    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
+    new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true)),
 };
 
 type PartyTemplateFunc = () => TrainerPartyTemplate;
@@ -1490,7 +1490,7 @@ const customTrainerConfigs = {
 
   [TrainerType.LUIS_2]: new TrainerConfig(TrainerType.LUIS_2)
     .initForFriend(true)
-    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.BAGON ]))
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.SALAMENCE ]))
     .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.RHYPERIOR, Species.ELECTIVIRE, Species.MAGMORTAR ]))
     .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.GENGAR ], TrainerSlot.TRAINER, true, p => {
       p.generateAndPopulateMoveset();
@@ -1519,7 +1519,10 @@ const customTrainerConfigs = {
     .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SPIRITOMB ]))
     .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.LUCARIO ]))
     .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.MEWTWO ]))
-    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.TYRANITAR ]))
+    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.TYRANITAR ], TrainerSlot.TRAINER, true, p => {
+      p.formIndex = 1; // Mega Tyrantitar
+      p.generateAndPopulateMoveset();
+    }))
     .setPartyTemplates(trainerPartyTemplates.ELIOT)
     .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
 
@@ -1530,18 +1533,24 @@ const customTrainerConfigs = {
     .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SPIRITOMB ]))
     .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.LUCARIO ]))
     .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.MEWTWO ]))
-    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.TYRANITAR ]))
+    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.TYRANITAR ], TrainerSlot.TRAINER, true, p => {
+      p.formIndex = 1; // Mega Tyrantitar
+      p.generateAndPopulateMoveset();
+    }))
     .setPartyTemplates(trainerPartyTemplates.ELIOT)
     .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
 
   [TrainerType.LUCAS]: new TrainerConfig(TrainerType.LUCAS)
     .initForFriend(true)
-    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.CHARIZARD ]))
-    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.HORSEA ]))
-    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.LUGIA ]))
-    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.DIALGA ]))
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.INFERNAPE ]))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.GYARADOS ], TrainerSlot.TRAINER, true, p => {
+      p.formIndex = 1; // Mega Gyarados
+      p.generateAndPopulateMoveset();
+    }))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.STARAPTOR ]))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.MACHAMP ]))
     .setPartyTemplates(trainerPartyTemplates.LUCAS)
-    .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
+    .setInstantTera(2), // Tera Fire Infernape / Tera Dragon Gyarados / Tera Flying Staraptor / Tera Fighting Machamp
 
 };
 
