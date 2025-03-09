@@ -175,7 +175,7 @@ export const trainerPartyTemplates = {
   RIVAL_5: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(3, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.STRONG)),
   RIVAL_6: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(3, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER)),
 
-  LUIS: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.WEAK), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
+  LUIS: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.WEAK), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE)),
   LUIS_2: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true), new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE, false, true)),
   ELIOT: new TrainerPartyCompoundTemplate(
     new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
@@ -1486,20 +1486,9 @@ const customTrainerConfigs = {
   [TrainerType.LUIS]: new TrainerConfig(TrainerType.LUIS)
     .initForFriend(true)
     .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.EMPOLEON ]))
-    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.GENGAR ], TrainerSlot.TRAINER, true, p => {
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.GENGAR ], TrainerSlot.TRAINER, false, p => {
       p.generateAndPopulateMoveset();
       p.pokeball = PokeballType.MASTER_BALL;
-    }))
-    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.GROUDON ]))
-    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.HISUI_ARCANINE, Species.GYARADOS ], TrainerSlot.TRAINER, true, p => {
-      p.formIndex = 1; // Mega Arcanine / Mega Gyarados
-      p.generateAndPopulateMoveset();
-    }))
-    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.MEWTWO ], TrainerSlot.TRAINER, true, p => {
-      p.formIndex = 1; // Mega Mewtwo
-      p.generateAndPopulateMoveset();
-      p.generateName();
-      p.gender = Gender.MALE;
     }))
     .setPartyTemplates(trainerPartyTemplates.LUIS)
     .setBattleBgm("battle_legendary_dia_pal"),
@@ -1509,7 +1498,7 @@ const customTrainerConfigs = {
     .initForFriend(true)
     .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.SALAMENCE ]))
     .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.RHYPERIOR, Species.ELECTIVIRE, Species.MAGMORTAR ]))
-    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.EMPOLEON ]))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.EMPOLEON ]))
     .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.GROUDON ]))
     .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.HISUI_ARCANINE, Species.GYARADOS ], TrainerSlot.TRAINER, true, p => {
       p.formIndex = 1; // Mega Arcanine / Mega Gyarados
