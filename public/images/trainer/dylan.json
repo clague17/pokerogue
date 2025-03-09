@@ -1,0 +1,41 @@
+{
+	"textures": [
+		{
+			"image": "dylan.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 50,
+				"h": 66
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 66
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 66
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:f3286feab996e495b3037886ba9d7767:901d11c25ca7f24d0082ca3384bd8c16:d3d49e2abdf01adb598c9900a2ebcf6c$"
+	}
+}

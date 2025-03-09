@@ -156,6 +156,7 @@ export const trainerPartyTemplates = {
   SIX_WEAKER_SAME: new TrainerPartyTemplate(6, PartyMemberStrength.WEAKER, true),
   SIX_WEAK_SAME: new TrainerPartyTemplate(6, PartyMemberStrength.WEAK, true),
   SIX_WEAK_BALANCED: new TrainerPartyTemplate(6, PartyMemberStrength.WEAK, false, true),
+  SIX_SAME_AVG_BALANCED: new TrainerPartyTemplate(6, PartyMemberStrength.AVERAGE, true, true),
 
   GYM_LEADER_1: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.STRONG)),
   GYM_LEADER_2: new TrainerPartyCompoundTemplate(new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE), new TrainerPartyTemplate(1, PartyMemberStrength.STRONG), new TrainerPartyTemplate(1, PartyMemberStrength.STRONGER)),
@@ -190,6 +191,12 @@ export const trainerPartyTemplates = {
     new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
     new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
     new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true)),
+  KATHY: new TrainerPartyCompoundTemplate(
+    new TrainerPartyTemplate(1, PartyMemberStrength.STRONG),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
+    new TrainerPartyTemplate(1, PartyMemberStrength.AVERAGE),
+    new TrainerPartyTemplate(1, PartyMemberStrength.WEAK, false, true)),
+
 };
 
 type PartyTemplateFunc = () => TrainerPartyTemplate;
@@ -304,7 +311,7 @@ export class TrainerConfig {
   }
 
   getSpriteKey(female?: boolean, isDouble: boolean = false): string {
-    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT, TrainerType.LUCAS, TrainerType.KATHY ];
+    const customTrainers = [ TrainerType.LUIS, TrainerType.ELIOT, TrainerType.LUCAS, TrainerType.KATHY, TrainerType.SUSAN, TrainerType.DYLAN ];
     if (customTrainers.includes(this.trainerType)) {
       return this.getKey();
     }
@@ -1111,9 +1118,10 @@ export class TrainerConfig {
      **/
   getTitle(trainerSlot: TrainerSlot = TrainerSlot.NONE, variant: TrainerVariant): string {
     const ret = this.name;
-
+    console.log("gettitle", ret);
     // Check if the variant is double and the name for double exists
     if (!trainerSlot && variant === TrainerVariant.DOUBLE && this.nameDouble) {
+      console.log("gettitle", this.nameDouble);
       return this.nameDouble;
     }
 
@@ -1289,6 +1297,15 @@ function getEvilGruntPartyTemplate(): TrainerPartyTemplate {
     return trainerPartyTemplates.GYM_LEADER_5; // 3 avg 2 strong 1 stronger
   }
 }
+
+/**
+ * Gets a party template based on the current wave number.
+ * Takes an array of templates and selects one based on wave progression.
+ * For every 30 waves after wave 20, moves to the next template in the array.
+ * Will not exceed the last template in the array.
+ * @param templates - Array of TrainerPartyTemplate to select from
+ * @returns The selected TrainerPartyTemplate based on current wave
+ */
 
 function getWavePartyTemplate(...templates: TrainerPartyTemplate[]) {
   return templates[Math.min(Math.max(Math.ceil((globalScene.gameMode.getWaveForDifficulty(globalScene.currentBattle?.waveIndex || startingWave, true) - 20) / 30), 0), templates.length - 1)];
@@ -1486,6 +1503,7 @@ const customTrainerConfigs = {
       p.gender = Gender.MALE;
     }))
     .setPartyTemplates(trainerPartyTemplates.LUIS)
+    .setBattleBgm("battle_legendary_dia_pal")
     .setInstantTera(3), // Tera Ground or Rock Rhyperior / Electric Electivire / Fire Magmortar
 
   [TrainerType.LUIS_2]: new TrainerConfig(TrainerType.LUIS_2)
@@ -1538,8 +1556,8 @@ const customTrainerConfigs = {
       p.generateAndPopulateMoveset();
     }))
     .setPartyTemplates(trainerPartyTemplates.ELIOT)
-    .setInstantTera(3), // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
-
+    .setInstantTera(3) // Tera Ghost Lucario / Tera Dark Mewtwo / Tera Steel Tyrantitar
+    .setBattleBgm("battle_legendary_rayquaza"),
   [TrainerType.LUCAS]: new TrainerConfig(TrainerType.LUCAS)
     .initForFriend(true)
     .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.INFERNAPE ]))
@@ -1550,7 +1568,8 @@ const customTrainerConfigs = {
     .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.STARAPTOR ]))
     .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.MACHAMP ]))
     .setPartyTemplates(trainerPartyTemplates.LUCAS)
-    .setInstantTera(2), // Tera Fire Infernape / Tera Dragon Gyarados / Tera Flying Staraptor / Tera Fighting Machamp
+    .setInstantTera(2) // Tera Fire Infernape / Tera Dragon Gyarados / Tera Flying Staraptor / Tera Fighting Machamp
+    .setBattleBgm("battle"),
   [TrainerType.KATHY]: new TrainerConfig(TrainerType.KATHY)
     .initForFriend(true)
     .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.SQUIRTLE ], TrainerSlot.TRAINER, true,))
@@ -1558,7 +1577,39 @@ const customTrainerConfigs = {
     .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SOBBLE ]))
     .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.SINISTCHA ]))
     .setPartyTemplates(trainerPartyTemplates.LUCAS)
-
+    .setEncounterBgm("encounter_parasol_lady")
+    .setBattleBgm("metropolis"),
+  [TrainerType.SUSAN_AND_DYLAN]: new TrainerConfig(TrainerType.SUSAN_AND_DYLAN)
+    .setDoubleOnly()
+    .setBattleBgm("battle_kanto_champion")
+    .setMixedBattleBgm("battle_kanto_champion")
+    .setPartyTemplateFunc(() => trainerPartyTemplates.SIX_SAME_AVG_BALANCED)
+    .setPartyMemberFunc(0, getRandomPartyMemberFunc([ Species.SQUIRTLE ], TrainerSlot.TRAINER, true, (p) => {
+      p.shiny = true;
+      p.generateAndPopulateMoveset();
+    }))
+    .setPartyMemberFunc(1, getRandomPartyMemberFunc([ Species.SNORLAX ], TrainerSlot.TRAINER, true, (p) => {
+      p.shiny = true;
+      p.generateAndPopulateMoveset();
+    }))
+    .setPartyMemberFunc(2, getRandomPartyMemberFunc([ Species.SQUIRTLE ], TrainerSlot.TRAINER, true, (p) => {
+      p.shiny = true;
+      p.generateAndPopulateMoveset();
+    }))
+    .setPartyMemberFunc(3, getRandomPartyMemberFunc([ Species.SNORLAX ], TrainerSlot.TRAINER, true, (p) => {
+      p.shiny = true;
+      p.generateAndPopulateMoveset();
+    }))
+    .setPartyMemberFunc(4, getRandomPartyMemberFunc([ Species.SQUIRTLE ], TrainerSlot.TRAINER, true, (p) => {
+      p.shiny = true;
+      p.generateAndPopulateMoveset();
+    }))
+    .setPartyMemberFunc(5, getRandomPartyMemberFunc([ Species.SNORLAX ], TrainerSlot.TRAINER, true, (p) => {
+      p.shiny = true;
+      p.generateAndPopulateMoveset();
+    }))
+    .setEncounterBgm("cyclist")
+    .setBattleBgm("battle_legendary_rayquaza"),
 };
 
 

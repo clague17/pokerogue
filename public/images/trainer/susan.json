@@ -1,0 +1,41 @@
+{
+	"textures": [
+		{
+			"image": "susan.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 63,
+				"h": 70
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 63,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 63,
+						"h": 70
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 63,
+						"h": 70
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:12d5adb1eb8202353df856e7a213aec0:81ea2f98be38d5cddbe05e5affcc2f34:9edc585754d96a43d14e4737b6ac8196$"
+	}
+}

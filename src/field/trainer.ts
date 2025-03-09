@@ -85,12 +85,12 @@ export default class Trainer extends Phaser.GameObjects.Container {
 
     const getSprite = (hasShadow?: boolean, forceFemale?: boolean) => {
       const ret = globalScene.addFieldSprite(0, 0, this.config.getSpriteKey(variant === TrainerVariant.FEMALE || forceFemale, this.isDouble()));
-      if (this.config.getKey() === "luis" || this.config.getKey() === "lucas") {
+      if (this.config.getKey() === "luis" || this.config.getKey() === "lucas" ) {
         ret.setScale(0.7);
       }
       ret.setOrigin(0.5, 1);
       const shadowOffset = 0;
-      const friends = [ "luis", "eliot", "lucas", "kathy" ];
+      const friends = [ "luis", "eliot", "lucas", "kathy", "susan_and_dylan" ];
       if (friends.includes(this.config.getKey())) {
         hasShadow = false;
       }
@@ -187,7 +187,7 @@ export default class Trainer extends Phaser.GameObjects.Container {
       name = i18next.t(`trainerNames:${this.config.nameDouble.toLowerCase().replace(/\s/g, "_")}`);
     }
 
-    console.log(title ? `${title} ${name}` : name);
+    console.log("getname output", title ? `${title} ${name}` : name);
 
     // Return the formatted name, including the title if it is set.
     return title ? `${title} ${name}` : name;

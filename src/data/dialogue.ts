@@ -3183,6 +3183,14 @@ export const trainerTypeDialogue: TrainerTypeDialogue = {
       "dialogue:kathy.victory.1",
     ],
   },
+  [TrainerType.SUSAN_AND_DYLAN]: {
+    encounter: [
+      "dialogue:susan_and_dylan.encounter.1",
+    ],
+    victory: [
+      "dialogue:susan_and_dylan.victory.1",
+    ],
+  },
 };
 
 
@@ -3190,6 +3198,10 @@ export const doubleBattleDialogue = {
   "blue_red_double": {
     encounter: [ "doubleBattleDialogue:blue_red_double.encounter.1" ],
     victory: [ "doubleBattleDialogue:blue_red_double.victory.1" ]
+  },
+  "susan_dylan_double": {
+    encounter: [ "doubleBattleDialogue:susan_dylan_double.encounter.1" ],
+    victory: [ "doubleBattleDialogue:susan_dylan_double.victory.1" ]
   },
   "red_blue_double": {
     encounter: [ "doubleBattleDialogue:red_blue_double.encounter.1" ],

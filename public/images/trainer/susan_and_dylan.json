@@ -1,0 +1,41 @@
+{
+	"textures": [
+		{
+			"image": "susan_and_dylan.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 94,
+				"h": 77
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 77
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 77
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 77
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:2666e07dcb93c9669210afe9d15d9b94:ec049801bbe194c5ff14b6626911713f:c56f204da1832395b2173712a0ed6b36$"
+	}
+}

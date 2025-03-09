@@ -765,6 +765,20 @@ export const classicFixedBattles: FixedBattleConfigs = {
       ],
       allowLuckUpgrades: true,
     }),
+  [ClassicFixedBossWaves.SUSAN_AND_DYLAN]: new FixedBattleConfig()
+    .setBattleType(BattleType.TRAINER)
+    .setDouble(true)
+    .setGetTrainerFunc(
+      () => new Trainer(TrainerType.SUSAN_AND_DYLAN, TrainerVariant.DOUBLE, undefined, undefined, undefined, trainerConfigs[TrainerType.SUSAN_AND_DYLAN])
+    ).setCustomModifierRewards({
+      guaranteedModifierTiers: [
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.ULTRA,
+        ModifierTier.LUXURY,
+      ],
+      allowLuckUpgrades: true,
+    }),
   [ClassicFixedBossWaves.ELITE_FOUR_1]: new FixedBattleConfig()
     .setBattleType(BattleType.TRAINER)
     .setGetTrainerFunc(
